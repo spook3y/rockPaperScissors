@@ -1,3 +1,19 @@
+let humanScore = 0;
+let compScore = 0;
+
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorBtn = document.querySelector("#scissors");
+const restartBtn = document.querySelector("#restartButton");
+const winMsg = document.querySelector("#winMsg");
+const playerScoreTxt = document.querySelector("#playerScore");
+const compScoreTxt = document.querySelector("#compScore");
+
+rockBtn.onclick = () => playGame("rock");
+paperBtn.onclick = () => playGame("paper");
+scissorBtn.onclick = () => playGame("scissors");
+restartBtn.onclick = () => restart();
+
 function getCompChoice() {
     let rand = Math.random();
     let choice = "";
@@ -19,62 +35,78 @@ function getPlayerChoice() {
     return choice;
 }
 
-let humanScore = 0;
-let compScore = 0;
 
 function winDeterminer(playerChoice, compChoice){
 
+    let msg = ""
     if(playerChoice == compChoice){
-        console.log("Tie! Nobody wins :)")
+        msg = "Tie! Nobody wins :)"
     }
     else if(playerChoice == "rock"){
         if (compChoice == "paper"){
-            console.log("You lose, Paper beats Rock")
+            msg = "You lose, Paper beats Rock"
             compScore += 1
         }
         else{
-            console.log("You Win, Rock beats Scissors")
+            msg = "You Win, Rock beats Scissors"
             humanScore += 1
         }
     }
     else if(playerChoice == "paper")
     {
         if (compChoice == "Scissors"){
-            console.log("You Lose, Scissors beats Paper")
+            msg = "You Lose, Scissors beats Paper"
             compScore += 1
         }
         else{
-            console.log("You Win, Paper beats Rock")
+            msg = "You Win, Paper beats Rock"
             humanScore += 1
         }
     }
     else{
         if (compChoice == "paper"){
-            console.log("You Win, Scissors beats Paper")
+            msg = "You Win, Scissors beats Paper"
             humanScore += 1
         }
         else{
-            console.log("You Lose, Rock beats Scissors")
+            msg = "You Lose, Rock beats Scissors"
             compScore += 1
         }
     }
-
+    
+    winMsg.classList = "text-center text-4xl font-bold"
+    winMsg.textContent = msg;
+    playerScoreTxt.textContent = humanScore;
+    compScoreTxt.textContent = compScore;
 }
 
-function playRound(){
-        let playerChoice = getPlayerChoice();
+function playRound(playerChoice){
+        
         let compChoice = getCompChoice();
         winDeterminer(playerChoice, compChoice);   
 }
 function printScores(){
+       
        console.log("Current Score....   Computer: " + compScore + "  Your Score: " + humanScore)
 }
-function playGame(){
-        for(i = 0; i < 5; i++)
-    {playRound();
+function playGame(playerChoice){
+    winMsg.textContent = "";
+    winMsg.classList = "loader text-center flex justify";
+    let waitTime = Math.floor((Math.random() + 1) * 1000);
+    setTimeout(function(){
+        playRound(playerChoice);
         printScores();
-    }
+    }, waitTime);
+  
+}
+function restart(){
+    humanScore = 0;
+    compScore = 0;
+    winMsg.classList = "text-center text-4xl font-bold"
+    winMsg.textContent = "";
+    playerScoreTxt.textContent = humanScore;
+    compScoreTxt.textContent = compScore;
 }
 
 
-playGame();
+//playGame();

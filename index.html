@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./src/output.css">
+    <title>Rock Paper Scissors</title>
 </head>
+
 <body>
+
+    <h1 class="text-center text-5xl font-bold">Rock Paper Scissors!</h1>
+
+    <div id="buttons" class="flex items-center gap-2.5 justify-center py-4">
+
+        <button id="rock" class=" py-15 px-15 rounded-full w-50 text-9xl border-2 flex justify-center bg-cyan-400 hover:bg-cyan-600">🪨</button>
+
+        <button id="paper" class=" py-15 px-15 rounded-full w-50 text-9xl border-2 flex justify-center bg-pink-400 hover:bg-pink-600">📄</button>
+
+        <button id="scissors" class=" py-15 px-15 rounded-full w-50 text-9xl border-2 flex justify-center bg-yellow-400 hover:bg-yellow-600">✂️</button>
+
+    </div>
+    <h3 class="text-center text-1xl ">Pick a choice above to play</h3>
+    <div class="flex justify-center">
+        <h3 id="winMsg" class="text-center text-4xl font-bold"></h3>
+    </div>
+    <div class="flex gap-55 justify-center">
+        <div class="flex flex-col items-center">
+            <h1 class="text-3xl justify-center pb-3">Player Score:</h1>
+            <h1 id="playerScore" class="text-[200px] justify-center px-15 border-4">0</h1>
+        </div>
+        <div class="flex flex-col items-center">
+            <h1 class="text-3xl justify-center pb-3">Computer Score:</h1>
+            <h1 id="compScore" class="text-[200px] justify-center px-15 border-4">0</h1>
+        </div>
+    </div>
+    <div class="flex justify-center">
+
+        <button id="restartButton" class="rounded-full border-2 py-2 px-2 bg-red-500 hover:bg-red-600">Restart</button>
+    </div>
+
     <script src="./script.js"></script>
-    
+
 </body>
+
 </html>
